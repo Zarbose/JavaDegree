@@ -1,4 +1,4 @@
-package org.javadegree.Producer;
+package org.javadegree.producer;
 
 import java.util.concurrent.TimeUnit;
 
