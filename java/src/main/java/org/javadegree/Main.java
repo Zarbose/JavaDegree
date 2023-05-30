@@ -20,6 +20,8 @@ public class Main {
         int nb_consumer = 10;
         int nb_producer_consumer = 10;
 
+        System.out.println("OK");
+        
         // Producers
         /**
         Thread[] producers = new Thread[nb_producer];
