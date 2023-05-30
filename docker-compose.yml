@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  java:
+    image: zarbose/javadegree-java
+    build:
+      context: ./java
+    container_name: java
+    networks:
+      - net_Java_Kafka
+
+  kafka:
+    image: zarbose/javadegree-kafka
+    build:
+      context: ./kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/bitnami"
+    networks:
+      - net_Java_Kafka
+      - net_Kafka_Prom
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+
+volumes:
+  kafka_data:
+    driver: local
+
+networks:
+  net_Java_Kafka:
+  net_Kafka_Prom:
+  net_Prom_Graf:
