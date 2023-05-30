@@ -1,12 +1,10 @@
-FROM amazoncorretto:17 AS builder
-WORKDIR /app
-COPY . .
-RUN javac -d target src/main/java/org/javadegree/Main.java \
-        src/main/java/org/javadegree/consumer/*.java \
-        src/main/java/org/javadegree/producer/*.java \
-        src/main/java/org/javadegree/producerconsumer/*.java
+# syntax=docker/dockerfile:1
 
-FROM amazoncorretto:17
-WORKDIR /app
-COPY --from=builder /app/target .
-CMD ["java", "org.javadegree.Main"]
+FROM maven:3.9-amazoncorretto-17 AS builder
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
+RUN mvn -f /usr/src/app/pom.xml clean package
+
+FROM gcr.io/distroless/java17:latest
+COPY --from=builder /usr/src/app/target/JavaDegree.jar /usr/app/JavaDegree.jar
+ENTRYPOINT ["java", "-jar", "/usr/app/JavaDegree.jar"]
