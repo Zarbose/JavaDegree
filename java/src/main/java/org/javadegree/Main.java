@@ -1,6 +1,9 @@
-import Producer.Producer;
-import Consumer.Consumer;
-import ProducerConsumer.ProducerConsumer;
+package org.javadegree;
+
+import org.javadegree.Consumer.Consumer;
+import org.javadegree.Producer.Producer;
+import org.javadegree.ProducerConsumer.ProducerConsumer;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
@@ -18,7 +21,7 @@ public class Main {
         int nb_producer_consumer = 10;
 
         // Producers
-        /**/
+        /**
         Thread[] producers = new Thread[nb_producer];
         for (int i = 0; i < nb_producer; i++){
             producers[i] = new Thread(new Producer(min,max));
