@@ -1,8 +1,10 @@
 package org.javadegree;
 
-import org.javadegree.consumer.Consumer;
-import org.javadegree.producer.Producer;
+import org.javadegree.consumer.Consomeur;
+import org.javadegree.producer.Producteur;
 import org.javadegree.producerconsumer.ProducerConsumer;
+
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -10,41 +12,39 @@ public class Main {
         int min = -20;
         int max = 20;
 
-        int[] values = new int[100];
 
-        for (int i = 0; i < values.length; i++){
-            values[i] = (int) (min + (Math.random() * (max - min)));
-        }
+        int nb_producer = 1;
+        int nb_consumer = 1;
+        int nb_producer_consumer = 1;
 
-        int nb_producer = 10;
-        int nb_consumer = 10;
-        int nb_producer_consumer = 10;
 
-        System.out.println("OK");
+        KafkaManager manager = new KafkaManager();
         
         // Producers
-        /**
+        /**/
         Thread[] producers = new Thread[nb_producer];
         for (int i = 0; i < nb_producer; i++){
-            producers[i] = new Thread(new Producer(min,max));
+            producers[i] = new Thread(new Producteur(min,max, manager.getProducer()));
             producers[i].start();
         }
         /**/
 
+        TimeUnit.SECONDS.sleep(5);
+
         // Consumers
-        /**
+        /**/
         Thread[] consumers = new Thread[nb_consumer];
         for (int i = 0; i < nb_consumer; i++){
-            consumers[i] = new Thread(new Consumer(values));
+            consumers[i] = new Thread(new Consomeur(manager.getConsumer()));
             consumers[i].start();
         }
         /**/
 
         // Producers Consumers
-        /**
+        /**/
         Thread[] producers_consumers = new Thread[nb_producer_consumer];
         for (int i = 0; i < nb_producer_consumer; i++){
-            producers_consumers[i] = new Thread(new ProducerConsumer(values));
+            producers_consumers[i] = new Thread(new ProducerConsumer(manager.getProducer(), manager.getConsumer()));
             producers_consumers[i].start();
         }
         /**/
