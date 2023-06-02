@@ -5,13 +5,16 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 
 import java.util.Properties;
 
+/**
+ * Cette classe permet de créé des producteurs et consommateurs Kafka
+ */
 public class KafkaManager {
 
-    public KafkaManager(){
+    public KafkaManager() {
 
     }
 
-    public KafkaProducer<String, String> getProducer(){
+    public KafkaProducer<String, String> getProducer() {
         Properties props_pro = new Properties();
         props_pro.put("bootstrap.servers", "localhost:9094");
         // props.put("bootstrap.servers", "kafka:9092");
@@ -23,7 +26,7 @@ public class KafkaManager {
         return pro;
     }
 
-    public KafkaConsumer<String, String> getConsumer(){
+    public KafkaConsumer<String, String> getConsumer() {
         Properties props_cons = new Properties();
         props_cons.put("bootstrap.servers", "localhost:9094");
         // props.put("bootstrap.servers", "kafka:9092");

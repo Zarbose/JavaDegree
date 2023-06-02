@@ -9,10 +9,18 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Cette classe affiche le contenu du topic Fahrenheit
+ */
 public class Consomeur implements Runnable {
     private final AtomicBoolean closed = new AtomicBoolean(false);
     private final KafkaConsumer<String, String> consumer;
-    public Consomeur(KafkaConsumer<String, String> consumer){
+
+    /**
+     *
+     * @param consumer un consomeur Kafka
+     */
+    public Consomeur(KafkaConsumer<String, String> consumer) {
         this.consumer = consumer;
     }
 
@@ -22,11 +30,9 @@ public class Consomeur implements Runnable {
         try {
             consumer.subscribe(List.of(topic));
             while (!closed.get()) {
-                // System.out.println("Avant");
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000));
-                // System.out.println("Consomer: "+records.count());
                 for (ConsumerRecord<String, String> record : records) {
-                    // System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+                    System.out.printf("key = %s, value = %s%n", record.key(), record.value());
                 }
             }
         } catch (WakeupException e) {

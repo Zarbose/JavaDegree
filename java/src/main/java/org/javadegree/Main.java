@@ -1,12 +1,9 @@
 package org.javadegree;
 
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.javadegree.consumer.Consomeur;
 import org.javadegree.producer.Producteur;
 import org.javadegree.producerconsumer.ProducerConsumer;
 
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -20,7 +17,6 @@ public class Main {
         int nb_consumer = 1;
         int nb_producer_consumer = 1;
 
-        System.out.println("OK");
 
         KafkaManager manager = new KafkaManager();
         
