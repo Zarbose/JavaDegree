@@ -22,3 +22,6 @@ tar -zxf "kafka_2.13-${KAFKA_VERSION}.tgz" && mv "kafka_2.13-${KAFKA_VERSION}" "
 
 ## Tests
 Kafka : `kafka-bin/bin/kafka-topics.sh --create --topic test --bootstrap-server 127.0.0.1:9094`
+
+## Grafana
+Pour les dashboards : https://grafana.com/grafana/dashboards/

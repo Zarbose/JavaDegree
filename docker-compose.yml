@@ -45,6 +45,14 @@ services:
       - prometheus_data:/prometheus
       - ./prometheus/:/etc/prometheus/
 
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - net_Prom_Graf
+
 volumes:
   kafka_data:
     driver: local
