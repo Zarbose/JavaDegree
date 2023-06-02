@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.javadegree"},{"l":"org.javadegree.consumer"},{"l":"org.javadegree.producer"},{"l":"org.javadegree.producerconsumer"}];updateSearchResults();
