@@ -8,15 +8,21 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        /**
+         * Variable de gestion
+         * @param min la température minimal générer
+         * @param max la températurem maximal générer
+         * @param nb_producer le nombre d'objet Producteur
+         * @param nb_consumer le nombre d'objet Consomeur
+         * @param nb_producer_consumer le nombre d'objet ProducerConsumer
+         */
 
         int min = -20;
         int max = 20;
 
-
         int nb_producer = 1;
         int nb_consumer = 1;
         int nb_producer_consumer = 1;
-
 
         KafkaManager manager = new KafkaManager();
         
