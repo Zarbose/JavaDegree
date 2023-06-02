@@ -16,12 +16,12 @@ services:
     container_name: kafka
     ports:
       - "9094:9094"
-      - "12345:12345"
-    volumes:
-      - "kafka_data:/bitnami"
+      - "12345:12345" #Dev by Martin
     networks:
       - net_Java_Kafka
       - net_Kafka_Prom
+    volumes:
+      - "kafka_data:/bitnami"
     environment:
       KAFKA_ENABLE_KRAFT: yes                   # Default
       KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: true # Default
@@ -33,8 +33,22 @@ services:
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_OPTS: -javaagent:/bitnami/kafka/jmx_prometheus_javaagent-0.18.0.jar=12345:/bitnami/kafka/config/config.yaml
 
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - net_Kafka_Prom
+      - net_Prom_Graf
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/:/etc/prometheus/
+
 volumes:
   kafka_data:
+    driver: local
+  prometheus_data:
     driver: local
 
 networks:
