@@ -27,8 +27,6 @@ public class Producteur implements Runnable {
             int degree = (int) (this.min + (Math.random() * (this.max - this.min)));
             producer.send(new ProducerRecord<String, String>(topic,"celsius", Integer.toString(degree)));
 
-            // System.out.println("i="+i);
-
             producer.flush();
 
             try {

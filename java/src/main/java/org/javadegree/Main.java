@@ -22,45 +22,24 @@ public class Main {
 
         System.out.println("OK");
 
-
-        Properties props_cons = new Properties();
-        props_cons.put("bootstrap.servers", "localhost:9094");
-        // props.put("bootstrap.servers", "kafka:9092");
-        props_cons.setProperty("group.id", "test");
-        props_cons.setProperty("enable.auto.commit", "true");
-        props_cons.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        props_cons.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        KafkaConsumer<String, String> cons = new KafkaConsumer<>(props_cons);
-
-
-
-        Properties props_pro = new Properties();
-        props_pro.put("bootstrap.servers", "localhost:9094");
-        // props.put("bootstrap.servers", "kafka:9092");
-        // props.put("linger.ms", 1);
-        props_pro.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props_pro.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        KafkaProducer<String, String> pro = new KafkaProducer<>(props_pro);
-
-
-
+        KafkaManager manager = new KafkaManager();
         
         // Producers
         /**/
         Thread[] producers = new Thread[nb_producer];
         for (int i = 0; i < nb_producer; i++){
-            producers[i] = new Thread(new Producteur(min,max, pro));
+            producers[i] = new Thread(new Producteur(min,max, manager.getProducer()));
             producers[i].start();
         }
         /**/
 
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(5);
 
         // Consumers
         /**/
         Thread[] consumers = new Thread[nb_consumer];
         for (int i = 0; i < nb_consumer; i++){
-            consumers[i] = new Thread(new Consomeur(cons));
+            consumers[i] = new Thread(new Consomeur(manager.getConsumer()));
             consumers[i].start();
         }
         /**/
@@ -69,7 +48,7 @@ public class Main {
         /**/
         Thread[] producers_consumers = new Thread[nb_producer_consumer];
         for (int i = 0; i < nb_producer_consumer; i++){
-            producers_consumers[i] = new Thread(new ProducerConsumer(pro, cons));
+            producers_consumers[i] = new Thread(new ProducerConsumer(manager.getProducer(), manager.getConsumer()));
             producers_consumers[i].start();
         }
         /**/
