@@ -10,12 +10,15 @@ services:
       - net_Java_Kafka
 
   kafka:
-    image: bitnami/kafka:3.4
+    image: zarbose/javadegree-kafka
+    build:
+      context: ./kafka
+    container_name: kafka
     ports:
       - "9094:9094"
+      - "12345:12345"
     volumes:
       - "kafka_data:/bitnami"
-    container_name: kafka
     networks:
       - net_Java_Kafka
       - net_Kafka_Prom
@@ -28,7 +31,7 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
-
+      KAFKA_OPTS: -javaagent:/bitnami/kafka/jmx_prometheus_javaagent-0.18.0.jar=12345:/bitnami/kafka/config/config.yaml
 
 volumes:
   kafka_data:
