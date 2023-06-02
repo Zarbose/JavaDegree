@@ -1,22 +1,46 @@
 package org.javadegree.consumer;
 
-import java.util.concurrent.TimeUnit;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.errors.WakeupException;
 
-public class Consumer implements Runnable {
-    private final int[] values;
-    public  Consumer(int[] values){
-        this.values=values;
+import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class Consomeur implements Runnable {
+    private final String topic = "Temperature-Celsius";
+
+    private final AtomicBoolean closed = new AtomicBoolean(false);
+    private final KafkaConsumer<String, String> consumer;
+    public Consomeur(KafkaConsumer consumer){
+        this.consumer = consumer;
     }
 
     @Override
     public void run() {
-        for (int i: this.values) {
-            System.out.println("Consumer ("+Thread.currentThread().getId()+"): "+i);
-            try {
-                TimeUnit.SECONDS.sleep(3);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        try {
+            consumer.subscribe(List.of(topic));
+            while (!closed.get()) {
+                // System.out.println("Avant");
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000));
+                System.out.println("Consomer: "+records.count());
+                for (ConsumerRecord<String, String> record : records)
+                    System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+                // System.out.println(records.);
+
             }
+        } catch (WakeupException e) {
+            if (!closed.get()) throw e;
+        } finally {
+            consumer.close();
         }
+        // TimeUnit.SECONDS.sleep(3);
+    }
+
+    public void shutdown() {
+        closed.set(true);
+        consumer.wakeup();
     }
 }
