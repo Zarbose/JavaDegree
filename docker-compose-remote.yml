@@ -3,8 +3,7 @@ version: "3.8"
 services:
   java:
     image: zarbose/javadegree-java
-    build:
-      context: ./java
+    pull_policy: always
     container_name: java
     networks:
       - net_Java_Kafka
@@ -13,8 +12,7 @@ services:
 
   kafka:
     image: zarbose/javadegree-kafka
-    build:
-      context: ./kafka
+    pull_policy: always
     container_name: kafka
     networks:
       - net_Java_Kafka
@@ -37,8 +35,7 @@ services:
 
   prometheus:
     image: zarbose/javadegree-prometheus
-    build:
-      context: ./prometheus
+    pull_policy: always
     container_name: prometheus
     networks:
       - net_Kafka_Prom
@@ -50,8 +47,7 @@ services:
 
   grafana:
     image: zarbose/javadegree-grafana
-    build:
-      context: ./grafana
+    pull_policy: always
     container_name: grafana
     networks:
       - net_Prom_Graf
