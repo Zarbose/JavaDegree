@@ -4,10 +4,10 @@ apiVersion: 1
 
 datasources:
   - name: Prometheus
+    uid: main-prometheus
     type: prometheus
     version: 1
     orgId: 1
-    uid: main-prometheus
     url: http://prometheus:9090
     access: proxy
     isDefault: true
@@ -22,4 +22,3 @@ datasources:
       timeInterval: 15s # Scrape interval
       queryTimeout: 60s
       httpMethod: POST
-
