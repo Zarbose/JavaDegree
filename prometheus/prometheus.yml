@@ -28,6 +28,10 @@ rule_files:
     # scheme defaults to 'http'.
 
 scrape_configs:
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
   - job_name: 'prometheus'
     scrape_interval: 5s
     scrape_timeout: 5s
@@ -42,10 +46,10 @@ scrape_configs:
     static_configs:
       - targets: ['kafka:12345']
 
-#  - job_name: 'kafka-kafka'
+#  - job_name: 'kafka-kminion'
 #    static_configs:
-#      - targets: ['kafka:8888']
+#      - targets: ['kafka-kminion:8080']
 
-  - job_name: 'node-exporter'
+  - job_name: 'kafka-exporter'
     static_configs:
-      - targets: ['node-exporter:9100']
+      - targets: ['kafka-exporter:9308']
