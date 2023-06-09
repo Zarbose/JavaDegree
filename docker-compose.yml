@@ -7,7 +7,7 @@ services:
       context: ./java
     container_name: java
     networks:
-      - net_Java_Kafka
+      - net_Java_Kafka_Prom
     depends_on:
       - kafka
 
@@ -17,8 +17,7 @@ services:
       context: ./kafka
     container_name: kafka
     networks:
-      - net_Kafka_Prom
-      - net_Java_Kafka
+      - net_Java_Kafka_Prom
     ports:
       - "9094:9094"   # Dev only
       - "12345:12345" # Dev only
@@ -54,7 +53,7 @@ services:
       context: ./prometheus
     container_name: prometheus
     networks:
-      - net_Kafka_Prom
+      - net_Java_Kafka_Prom
       - net_Prom_Graf
       - net_Prom_NodeExporter
     ports:
@@ -86,7 +85,7 @@ services:
 #    image: redpandadata/kminion:v2.2.3
 #    container_name: kafka-minion
 #    networks:
-#      - net_Kafka_Prom
+#      - net_Java_Kafka_Prom
 #    ports:
 #      - "8080:8080" # Dev only
 #    environment:
@@ -99,7 +98,7 @@ services:
     image: danielqsj/kafka-exporter
     container_name: kafka-exporter
     networks:
-      - net_Kafka_Prom
+      - net_Java_Kafka_Prom
     ports:
       - "9308:9308" # Dev only
     command:
@@ -111,8 +110,7 @@ services:
     restart: on-failure
 
 networks:
-  net_Java_Kafka:
-  net_Kafka_Prom:
+  net_Java_Kafka_Prom:
   net_Prom_Graf:
   net_Prom_NodeExporter:
 
