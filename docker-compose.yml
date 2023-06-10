@@ -5,9 +5,13 @@ services:
     image: zarbose/javadegree-java
     build:
       context: ./java
+      args:
+        EXPOSE_METRICS_PORT: '9301'
     container_name: java
     networks:
-      - net_Java_Kafka_Prom
+      - net-java
+    #ports:
+    #  - "9301:9301"  # Dev only
     depends_on:
       - kafka
 
@@ -15,12 +19,15 @@ services:
     image: zarbose/javadegree-kafka
     build:
       context: ./kafka
+      args:
+        EXPOSE_METRICS_PORT: '9301'
     container_name: kafka
     networks:
-      - net_Java_Kafka_Prom
+      - net-java
+      - net-kafka
     ports:
-      - "9094:9094"   # Dev only
-      - "12345:12345" # Dev only
+      - "9094:9094"  # Dev only
+    #  - "9301:9301"  # Dev only
     volumes:
       - kafka_data:/bitnami
     environment:
@@ -33,7 +40,6 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_OPTS: -javaagent:/bitnami/kafka/jmx_prometheus_javaagent.jar=12345:/bitnami/kafka/config/config.yaml
 
   grafana:
     image: zarbose/javadegree-grafana
@@ -41,7 +47,7 @@ services:
       context: ./grafana
     container_name: grafana
     networks:
-      - net_Prom_Graf
+      - net-grafana
     ports:
       - "3000:3000"
     volumes:
@@ -53,9 +59,10 @@ services:
       context: ./prometheus
     container_name: prometheus
     networks:
-      - net_Java_Kafka_Prom
-      - net_Prom_Graf
-      - net_Prom_NodeExporter
+      - net-java
+      - net-kafka
+      - net-grafana
+      - net-node
     ports:
       - "9090:9090"
     volumes:
@@ -67,52 +74,41 @@ services:
     image: prom/node-exporter:latest
     container_name: node-exporter
     networks:
-      - net_Prom_NodeExporter
-    ports:
-      - "9100:9100" # Dev only
+      - net-node
+    #ports:
+    #  - "9301:9301"  # Dev only
     command:
       - '--path.procfs=/host/proc'
       - '--path.sysfs=/host/sys'
       - '--path.rootfs=/rootfs'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--web.listen-address=:9301'
     restart: unless-stopped
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
 
-#  kafka-minion:
-#    image: redpandadata/kminion:v2.2.3
-#    container_name: kafka-minion
-#    networks:
-#      - net_Java_Kafka_Prom
-#    ports:
-#      - "8080:8080" # Dev only
-#    environment:
-#      KAFKA_BROKERS: kafka:9092
-#    depends_on:
-#      - kafka
-#    restart: on-failure
-
   kafka-exporter:
     image: danielqsj/kafka-exporter
     container_name: kafka-exporter
     networks:
-      - net_Java_Kafka_Prom
-    ports:
-      - "9308:9308" # Dev only
+      - net-kafka
+    #ports:
+    #  - "9301:9301" # Dev only
     command:
       - '--kafka.server=kafka:9092'
       - '--kafka.version=3.4.0'
-      - '--web.listen-address=:9308'
+      - '--web.listen-address=:9301'
     depends_on:
       - kafka
     restart: on-failure
 
 networks:
-  net_Java_Kafka_Prom:
-  net_Prom_Graf:
-  net_Prom_NodeExporter:
+  net-java:
+  net-kafka:
+  net-grafana:
+  net-node:
 
 volumes:
   kafka_data:

@@ -30,12 +30,13 @@ rule_files:
 scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
-      - targets: ['node-exporter:9100']
+      - targets: ['node-exporter:9301']
 
   - job_name: 'prometheus'
     scrape_interval: 5s
     scrape_timeout: 5s
     static_configs:
+      # Do not put localhost below because...
       - targets: ['prometheus:9090']
 
   - job_name: 'grafana'
@@ -44,12 +45,8 @@ scrape_configs:
 
   - job_name: 'jmx-exporter'
     static_configs:
-      - targets: ['kafka:12345', 'java:12345']
-
-#  - job_name: 'kafka-kminion'
-#    static_configs:
-#      - targets: ['kafka-kminion:8080']
+      - targets: ['kafka:9301', 'java:9301']
 
   - job_name: 'kafka-exporter'
     static_configs:
-      - targets: ['kafka-exporter:9308']
+      - targets: ['kafka-exporter:9301']
