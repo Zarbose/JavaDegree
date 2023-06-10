@@ -3,6 +3,7 @@ package org.javadegree;
 import org.javadegree.consumer.Consomeur;
 import org.javadegree.producer.Producteur;
 import org.javadegree.producerconsumer.ProducerConsumer;
+import org.javadegree.utils.KafkaManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -50,7 +51,7 @@ public class Main {
         /**/
         Thread[] producers_consumers = new Thread[nb_producer_consumer];
         for (int i = 0; i < nb_producer_consumer; i++){
-            producers_consumers[i] = new Thread(new ProducerConsumer(manager.getProducer(), manager.getConsumer()));
+            producers_consumers[i] = new Thread(new ProducerConsumer(manager.getKafkaStreams()));
             producers_consumers[i].start();
         }
         /**/
