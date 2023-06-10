@@ -10,18 +10,15 @@ services:
       - net_Java_Kafka
 
   kafka:
-    image: zarbose/javadegree-kafka
-    build:
-      context: ./kafka
-    container_name: kafka
+    image: bitnami/kafka:3.4
     ports:
       - "9094:9094"
-      - "12345:12345" #Dev by Martin
+    volumes:
+      - "kafka_data:/bitnami"
+    container_name: kafka
     networks:
       - net_Java_Kafka
       - net_Kafka_Prom
-    volumes:
-      - "kafka_data:/bitnami"
     environment:
       KAFKA_ENABLE_KRAFT: yes                   # Default
       KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: true # Default
@@ -31,32 +28,10 @@ services:
       KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_OPTS: -javaagent:/bitnami/kafka/jmx_prometheus_javaagent-0.18.0.jar=12345:/bitnami/kafka/config/config.yaml
 
-  prometheus:
-    image: prom/prometheus:v2.44.0
-    container_name: prometheus
-    ports:
-      - "9090:9090"
-    networks:
-      - net_Kafka_Prom
-      - net_Prom_Graf
-    volumes:
-      - prometheus_data:/prometheus
-      - ./prometheus/:/etc/prometheus/
-
-  grafana:
-    image: grafana/grafana:9.5.2
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - net_Prom_Graf
 
 volumes:
   kafka_data:
-    driver: local
-  prometheus_data:
     driver: local
 
 networks:
