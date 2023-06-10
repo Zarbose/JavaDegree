@@ -32,4 +32,30 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/javadegree-java:latest
-          
+
+      - name: Build and push image
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:/grafana"
+          platforms: linux/amd64,linux/arm64/v8
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/javadegree-grafana:latest
+
+      - name: Build and push image
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:/kafka"
+          platforms: linux/amd64,linux/arm64/v8
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/javadegree-kafka:latest
+
+      - name: Build and push image
+        uses: docker/build-push-action@v3
+        with:
+          context: "{{defaultContext}}:/prometheus"
+          platforms: linux/amd64,linux/arm64/v8
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/javadegree-prometheus:latest

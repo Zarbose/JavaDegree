@@ -1,0 +1,24 @@
+# See documentation: https://grafana.com/docs/grafana/latest/administration/provisioning/#data-sources
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    uid: main-prometheus
+    type: prometheus
+    version: 1
+    orgId: 1
+    url: http://prometheus:9090
+    access: proxy
+    isDefault: true
+    editable: false
+
+    # The following content depend on each data sources type.
+    # See documentation: https://grafana.com/docs/grafana/latest/datasources/
+    jsonData:
+      prometheusType: Prometheus
+      prometheusVersion: 2.40.1 # = "> 2.40.x"
+      manageAlerts: true
+      timeInterval: 15s # Scrape interval
+      queryTimeout: 60s
+      httpMethod: POST

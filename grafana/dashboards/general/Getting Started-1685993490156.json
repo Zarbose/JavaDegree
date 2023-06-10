@@ -1,0 +1,212 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Home page",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "main-prometheus"
+      },
+      "description": "This is the home page for travelers.",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "GitHub project",
+          "url": "https://github.com/Zarbose/JavaDegree"
+        },
+        {
+          "targetBlank": true,
+          "title": "Simon",
+          "url": "https://www.linkedin.com/in/simon-pieto-004b3a220/"
+        },
+        {
+          "targetBlank": true,
+          "title": "Martin",
+          "url": "https://www.linkedin.com/in/mmaureaux/"
+        },
+        {
+          "targetBlank": true,
+          "title": "Aymeric",
+          "url": "https://www.linkedin.com/in/aymeric-lecas-9870a2202/"
+        },
+        {
+          "title": "Tanguy",
+          "url": "https://www.linkedin.com/in/tanguynicolas/"
+        }
+      ],
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Welcome to this project\n\nBienvenue sur le projet JavaDegree.\n\nCe projet a été réalisé par Simon, Martin, Aymeric et Tanguy, étudiants en Master Informatique à l'Université de Picardie Jules Verne.",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.5.2",
+      "title": "Getting started",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "main-prometheus"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Layer 1",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "coords",
+          "lat": 49.8941,
+          "lon": 2.2958,
+          "zoom": 7
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "title": "Location",
+      "transparent": true,
+      "type": "geomap"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "home"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Getting Started",
+  "uid": "af7dd61b-081b-42c2-93ad-646154ff9d6f",
+  "version": 4,
+  "weekStart": ""
+}
