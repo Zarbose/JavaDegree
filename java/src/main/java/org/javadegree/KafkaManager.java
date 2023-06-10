@@ -2,6 +2,10 @@ package org.javadegree;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
 
 import java.util.Properties;
 
@@ -37,5 +41,28 @@ public class KafkaManager {
         KafkaConsumer<String, String> cons = new KafkaConsumer<>(props_cons);
 
         return cons;
+    }
+
+    public static KafkaStreams getKafkaStreams(){
+        String topic_src = "Temperature-Celsius";
+        String topic_dest = "Temperature-Fahrenheit";
+        // String topic_test = "test";
+
+
+        Properties props = new Properties();
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-pipe");
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+
+        StreamsBuilder builder = new StreamsBuilder();
+
+        builder.<String, String>stream(topic_src).mapValues(value -> String.valueOf(value.length())).to(topic_dest);
+
+        KafkaStreams streams = new KafkaStreams(builder.build(), props);
+        // streams.start();
+
+
+        return streams;
     }
 }

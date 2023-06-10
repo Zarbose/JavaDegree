@@ -27,6 +27,7 @@ public class Consomeur implements Runnable {
     @Override
     public void run() {
         String topic = "Temperature-Fahrenheit";
+        // String topic_test = "test";
         try {
             consumer.subscribe(List.of(topic));
             while (!closed.get()) {

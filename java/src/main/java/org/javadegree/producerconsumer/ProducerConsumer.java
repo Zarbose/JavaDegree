@@ -6,6 +6,11 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.errors.WakeupException;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.kstream.KStream;
+import org.javadegree.KafkaManager;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,6 +23,7 @@ public class ProducerConsumer implements Runnable {
     private final AtomicBoolean closed = new AtomicBoolean(false);
     private final KafkaProducer<String, String> producer;
     private final KafkaConsumer<String, String> consumer;
+    private final KafkaStreams streams = KafkaManager.getKafkaStreams();
 
     /**
      *
@@ -34,6 +40,9 @@ public class ProducerConsumer implements Runnable {
     public void run() {
         String topic_src = "Temperature-Celsius";
         String topic_dest = "Temperature-Fahrenheit";
+
+        this.streams.start();
+
         try {
             consumer.subscribe(List.of(topic_src));
             while (!closed.get()) {
