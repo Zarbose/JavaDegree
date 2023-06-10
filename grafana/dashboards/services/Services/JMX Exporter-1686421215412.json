@@ -1409,7 +1409,7 @@
           "text": "Prometheus",
           "value": "Prometheus"
         },
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "datasource",
@@ -1422,11 +1422,11 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "jmx-exporter",
           "value": "jmx-exporter"
         },
-        "hide": 0,
+        "hide": 2,
         "label": "job",
         "name": "job",
         "options": [
@@ -1444,8 +1444,8 @@
         "allValue": ".*",
         "current": {
           "selected": false,
-          "text": "java:12345",
-          "value": "java:12345"
+          "text": "java:9301",
+          "value": "java:9301"
         },
         "datasource": {
           "uid": "$datasource"
@@ -1552,8 +1552,8 @@
     ]
   },
   "timezone": "",
-  "title": "JVM dashboard",
+  "title": "JMX Exporter",
   "uid": "chanjarster-jvm-dashboard",
-  "version": 6,
+  "version": 3,
   "weekStart": ""
 }
