@@ -29,14 +29,14 @@ public class Producteur implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             int degree = (int) (this.min + (Math.random() * (this.max - this.min)));
             producer.send(new ProducerRecord<String, String>(topic, "celsius", Integer.toString(degree)));
 
             producer.flush();
 
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
