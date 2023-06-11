@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 8563,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1334,6 +1334,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "fill": 1,
@@ -1377,30 +1378,36 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "os_total_physical_memory_bytes{job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "java_lang_OperatingSystem_TotalPhysicalMemorySize{job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Total physical memory",
+          "range": true,
           "refId": "A"
         },
         {
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "os_committed_virtual_memory_bytes{job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "java_lang_OperatingSystem_CommittedVirtualMemorySize{job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Committed virtual memory",
+          "range": true,
           "refId": "B"
         },
         {
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "os_free_physical_memory_bytes{job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "java_lang_OperatingSystem_FreePhysicalMemorySize{job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Free physical memory",
+          "range": true,
           "refId": "C"
         }
       ],
@@ -1568,7 +1575,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
