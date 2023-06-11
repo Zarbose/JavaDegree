@@ -477,7 +477,7 @@
       }
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [
@@ -563,7 +563,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -593,7 +593,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -624,6 +624,6 @@
   "timezone": "browser",
   "title": "Kafka Exporter",
   "uid": "jwPKIsniz",
-  "version": 13,
+  "version": 2,
   "weekStart": ""
 }

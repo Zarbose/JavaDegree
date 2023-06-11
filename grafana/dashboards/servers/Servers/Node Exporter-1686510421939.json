@@ -23151,7 +23151,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -23263,7 +23263,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -23294,6 +23294,6 @@
   "timezone": "browser",
   "title": "Node Exporter",
   "uid": "rYdddlPWk",
-  "version": 7,
+  "version": 2,
   "weekStart": ""
 }

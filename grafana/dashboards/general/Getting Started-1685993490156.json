@@ -1,317 +1,316 @@
 {
-  "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": {
-          "type": "grafana",
-          "uid": "-- Grafana --"
-        },
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      }
-    ]
-  },
-  "description": "Home page",
-  "editable": true,
-  "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
-  "id": 1,
-  "links": [],
-  "liveNow": false,
-  "panels": [
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
-      },
-      "description": "This is the home page for travelers.",
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "id": 1,
-      "links": [
+    "annotations": {
+      "list": [
         {
-          "targetBlank": true,
-          "title": "GitHub project",
-          "url": "https://github.com/Zarbose/JavaDegree"
-        },
-        {
-          "targetBlank": true,
-          "title": "Simon",
-          "url": "https://www.linkedin.com/in/simon-pieto-004b3a220/"
-        },
-        {
-          "targetBlank": true,
-          "title": "Martin",
-          "url": "https://www.linkedin.com/in/mmaureaux/"
-        },
-        {
-          "targetBlank": true,
-          "title": "Aymeric",
-          "url": "https://www.linkedin.com/in/aymeric-lecas-9870a2202/"
-        },
-        {
-          "title": "Tanguy",
-          "url": "https://www.linkedin.com/in/tanguynicolas/"
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
         }
-      ],
-      "options": {
-        "code": {
-          "language": "plaintext",
-          "showLineNumbers": false,
-          "showMiniMap": false
-        },
-        "content": "# Welcome to this project\n\nBienvenue sur le projet JavaDegree.\n\nCe projet a été réalisé par Simon, Martin, Aymeric et Tanguy, étudiants en Master Informatique à l'Université de Picardie Jules Verne.",
-        "mode": "markdown"
-      },
-      "pluginVersion": "9.5.2",
-      "title": "Getting started",
-      "transparent": true,
-      "type": "text"
+      ]
     },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
+    "description": "Home page",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "main-prometheus"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 2,
-      "options": {
-        "basemap": {
-          "config": {},
-          "name": "Layer 0",
-          "type": "default"
+        "description": "This is the home page for travelers.",
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 0,
+          "y": 0
         },
-        "controls": {
-          "mouseWheelZoom": true,
-          "showAttribution": true,
-          "showDebug": false,
-          "showMeasure": false,
-          "showScale": false,
-          "showZoom": true
-        },
-        "layers": [
+        "id": 1,
+        "links": [
           {
-            "config": {
-              "showLegend": true,
-              "style": {
-                "color": {
-                  "fixed": "dark-green"
-                },
-                "opacity": 0.4,
-                "rotation": {
-                  "fixed": 0,
-                  "max": 360,
-                  "min": -360,
-                  "mode": "mod"
-                },
-                "size": {
-                  "fixed": 5,
-                  "max": 15,
-                  "min": 2
-                },
-                "symbol": {
-                  "fixed": "img/icons/marker/circle.svg",
-                  "mode": "fixed"
-                },
-                "textConfig": {
-                  "fontSize": 12,
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "textAlign": "center",
-                  "textBaseline": "middle"
-                }
-              }
-            },
-            "location": {
-              "mode": "auto"
-            },
-            "name": "Layer 1",
-            "tooltip": true,
-            "type": "markers"
+            "targetBlank": true,
+            "title": "GitHub project",
+            "url": "https://github.com/Zarbose/JavaDegree"
+          },
+          {
+            "targetBlank": true,
+            "title": "Simon",
+            "url": "https://www.linkedin.com/in/simon-pieto-004b3a220/"
+          },
+          {
+            "targetBlank": true,
+            "title": "Martin",
+            "url": "https://www.linkedin.com/in/mmaureaux/"
+          },
+          {
+            "targetBlank": true,
+            "title": "Aymeric",
+            "url": "https://www.linkedin.com/in/aymeric-lecas-9870a2202/"
+          },
+          {
+            "title": "Tanguy",
+            "url": "https://www.linkedin.com/in/tanguynicolas/"
           }
         ],
-        "tooltip": {
-          "mode": "details"
-        },
-        "view": {
-          "allLayers": true,
-          "id": "coords",
-          "lat": 49.8941,
-          "lon": 2.2958,
-          "zoom": 7
-        }
-      },
-      "pluginVersion": "9.5.2",
-      "title": "Location",
-      "transparent": true,
-      "type": "geomap"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+        "options": {
+          "code": {
+            "language": "plaintext",
+            "showLineNumbers": false,
+            "showMiniMap": false
           },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
+          "content": "# Welcome to this project\n\nBienvenue sur le projet JavaDegree.\n\nCe projet a été réalisé par Simon, Martin, Aymeric et Tanguy, étudiants en Master Informatique à l'Université de Picardie Jules Verne.",
+          "mode": "markdown"
+        },
+        "pluginVersion": "9.5.2",
+        "title": "Getting started",
+        "transparent": true,
+        "type": "text"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "main-prometheus"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
             },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
             },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 3,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
           }
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 16
-      },
-      "id": 3,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "main-prometheus"
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "main-prometheus"
+            },
+            "editorMode": "builder",
+            "exemplar": false,
+            "expr": "temperature_celsius",
+            "legendFormat": "Temperature Celsius",
+            "range": true,
+            "refId": "A"
           },
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "temperature_celsius",
-          "legendFormat": "Temperature Celsius",
-          "range": true,
-          "refId": "A"
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "main-prometheus"
+            },
+            "editorMode": "builder",
+            "expr": "temperature_fahrenheit",
+            "hide": false,
+            "legendFormat": "Temperature Fahrenheit",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "Temperature",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "main-prometheus"
         },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "main-prometheus"
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
           },
-          "editorMode": "builder",
-          "expr": "temperature_fahrenheit",
-          "hide": false,
-          "legendFormat": "Temperature Fahrenheit",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Temperature",
-      "type": "timeseries"
-    }
-  ],
-  "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
-  "tags": [
-    "home"
-  ],
-  "templating": {
-    "list": []
-  },
-  "time": {
-    "from": "now-15m",
-    "to": "now"
-  },
-  "timepicker": {},
-  "timezone": "",
-  "title": "Getting Started",
-  "uid": "af7dd61b-081b-42c2-93ad-646154ff9d6f",
-  "version": 1,
-  "weekStart": ""
-}
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 7
+        },
+        "id": 2,
+        "options": {
+          "basemap": {
+            "config": {},
+            "name": "Layer 0",
+            "type": "default"
+          },
+          "controls": {
+            "mouseWheelZoom": true,
+            "showAttribution": true,
+            "showDebug": false,
+            "showMeasure": false,
+            "showScale": false,
+            "showZoom": true
+          },
+          "layers": [
+            {
+              "config": {
+                "showLegend": true,
+                "style": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "opacity": 0.4,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "fixed": 5,
+                    "max": 15,
+                    "min": 2
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/circle.svg",
+                    "mode": "fixed"
+                  },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "textAlign": "center",
+                    "textBaseline": "middle"
+                  }
+                }
+              },
+              "location": {
+                "mode": "auto"
+              },
+              "name": "Layer 1",
+              "tooltip": true,
+              "type": "markers"
+            }
+          ],
+          "tooltip": {
+            "mode": "details"
+          },
+          "view": {
+            "allLayers": true,
+            "id": "coords",
+            "lat": 49.8941,
+            "lon": 2.2958,
+            "zoom": 7
+          }
+        },
+        "pluginVersion": "9.5.2",
+        "title": "Location",
+        "transparent": true,
+        "type": "geomap"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [
+      "home"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Getting Started",
+    "uid": "af7dd61b-081b-42c2-93ad-646154ff9d6f",
+    "version": 1,
+    "weekStart": ""
+  }
