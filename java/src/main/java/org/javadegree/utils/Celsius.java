@@ -19,7 +19,7 @@ public class Celsius {
         DecimalFormat df = new DecimalFormat("0.0");
 
         String cel_str = "temperature_celsius " + this.cel;
-        String far_str = "temprature_fahrenheit "+df.format(far);
+        String far_str = "temperature_fahrenheit "+df.format(far);
 
         File file = new File("/tmp/temperatures.prom");
 
