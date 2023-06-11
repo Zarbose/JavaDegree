@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 8563,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -810,6 +810,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "fill": 1,
@@ -859,12 +860,14 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "jvm_memory_pool_bytes_max{pool=\"$mempool\",job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_memory_pool_bytes_max{pool=\"${mempool:raw}\",job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Max",
           "metric": "jvm_memory_bytes_used",
+          "range": true,
           "refId": "B",
           "step": 5
         },
@@ -872,12 +875,14 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "jvm_memory_pool_bytes_used{pool=\"$mempool\",job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_memory_pool_bytes_used{pool=\"${mempool:raw}\",job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Used",
           "metric": "jvm_memory_bytes_used",
+          "range": true,
           "refId": "A",
           "step": 5
         },
@@ -885,12 +890,14 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "jvm_memory_pool_bytes_committed{pool=\"$mempool\",job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_memory_pool_bytes_committed{pool=\"${mempool:raw}\",job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Committed",
           "metric": "jvm_memory_bytes_used",
+          "range": true,
           "refId": "C",
           "step": 5
         }
@@ -1554,6 +1561,6 @@
   "timezone": "",
   "title": "JMX Exporter",
   "uid": "chanjarster-jvm-dashboard",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
