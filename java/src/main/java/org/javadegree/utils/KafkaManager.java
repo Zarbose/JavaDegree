@@ -8,6 +8,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.javadegree.utils.Celsius;
 
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -57,7 +58,13 @@ public class KafkaManager {
 
         StreamsBuilder builder = new StreamsBuilder();
 
-        builder.<String, String>stream(topic_src).mapValues(value -> String.valueOf(new Celsius(value).toFahrenheit())).to(topic_dest);
+        builder.<String, String>stream(topic_src).mapValues(value -> {
+            try {
+                return String.valueOf(new Celsius(value).toFahrenheit());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).to(topic_dest);
 
         return new KafkaStreams(builder.build(), props);
     }
