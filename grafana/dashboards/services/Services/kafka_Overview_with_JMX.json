@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 721,
   "graphTooltip": 0,
-  "id": 10,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -705,8 +705,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "Kafka Overview Copy",
+  "title": "Kafka Overview",
   "uid": "c87825d2-3fcd-40e8-a120-3cdcee972406",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
