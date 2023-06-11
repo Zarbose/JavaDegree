@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 8563,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -360,6 +360,7 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "fieldConfig": {
@@ -425,7 +426,8 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "os_available_processors{job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "java_lang_OperatingSystem_AvailableProcessors{job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -437,6 +439,7 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "fieldConfig": {
@@ -501,7 +504,8 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "os_system_load_average{job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "java_lang_OperatingSystem_SystemLoadAverage{job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -513,6 +517,7 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "fieldConfig": {
@@ -577,7 +582,8 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "expr": "os_open_file_descriptor_count{job=\"$job\",instance=\"$instance\"}",
+          "editorMode": "code",
+          "expr": "java_lang_OperatingSystem_OpenFileDescriptorCount{job=\"$job\",instance=\"$instance\"}",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
