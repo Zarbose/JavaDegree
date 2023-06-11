@@ -35,8 +35,11 @@ public class Producteur implements Runnable {
 
             producer.flush();
 
+            // Générer un nombre aléatoire entre 100 et 1500
+            int randomDelay = 100 + (int) (Math.random() * (1500 - 100));
+
             try {
-                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(randomDelay);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
