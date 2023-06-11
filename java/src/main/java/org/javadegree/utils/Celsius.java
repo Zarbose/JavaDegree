@@ -32,6 +32,7 @@ public class Celsius {
         bw.write(cel_str);
         bw.write("\n");
         bw.write(far_str);
+        bw.write("\n");
         bw.close();
 
 
