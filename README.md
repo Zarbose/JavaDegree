@@ -1,7 +1,7 @@
 # JavaDegree
 
 Projet de Master 1 Informatique, UE Programmation événementielle.  
-Le but est de réalisé, via Docker, avec Java, Prometheus et Grafana, une application multi-theadé qui récupère (fictivement) des températures. Les températures en celsius doivent être envoyées dans Kafka dans un topic T1, esuite, l'application doit récupérer ces températures et les envoyer dans un topic T2 en fahrenheit. Les températures doivent pouvoir etre visualisées sur un graphique, et insérées dans une TSDB au préalable.
+Le but est de réaliser, via Docker, avec Java, Prometheus et Grafana, une application multi-theadé qui récupère (fictivement) des températures. Les températures en celsius doivent être envoyées dans Kafka dans un topic T1, esuite, l'application doit récupérer ces températures et les envoyer dans un topic T2 en fahrenheit. Les températures doivent pouvoir etre visualisées sur un graphique, et insérées dans une TSDB au préalable.
 
 ## Build/Run Java image only
 
