@@ -30,6 +30,7 @@ jobs:
           context: "{{defaultContext}}:/java"
           platforms: linux/amd64,linux/arm64/v8
           file: ./Dockerfile
+          build-args: "EXPOSE_METRICS_PORT=9301"
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/javadegree-java:latest
 
@@ -48,6 +49,7 @@ jobs:
           context: "{{defaultContext}}:/kafka"
           platforms: linux/amd64,linux/arm64/v8
           file: ./Dockerfile
+          build-args: "EXPOSE_METRICS_PORT=9301"
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/javadegree-kafka:latest
 
