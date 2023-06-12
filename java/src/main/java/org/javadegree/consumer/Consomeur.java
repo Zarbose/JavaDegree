@@ -32,7 +32,7 @@ public class Consomeur implements Runnable {
             while (!closed.get()) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000));
                 for (ConsumerRecord<String, String> record : records) {
-                    System.out.printf("key = %s, value = %s%n", record.key(), record.value());
+                    System.out.printf("key = %s, value = %s%n", "Fahrenheit", record.value());
                 }
             }
         } catch (WakeupException e) {
