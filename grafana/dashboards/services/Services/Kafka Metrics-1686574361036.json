@@ -4,8 +4,8 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "grafana",
-          "uid": "-- Grafana --"
+          "type": "datasource",
+          "uid": "grafana"
         },
         "enable": true,
         "hide": true,
@@ -18,48 +18,46 @@
   "description": "Kafka resource usage and throughput",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 721,
+  "gnetId": 7589,
   "graphTooltip": 0,
   "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "aliasColors": {
-        "localhost:7071": "#629E51"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
+        "uid": "${DS_PROMETHEUS}"
       },
-      "editable": true,
-      "error": false,
-      "fill": 1,
+      "fill": 0,
       "fillGradient": 0,
-      "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 8,
+        "h": 10,
+        "w": 10,
         "x": 0,
         "y": 0
       },
       "hiddenSeries": false,
-      "id": 1,
-      "isNew": true,
+      "id": 14,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
-        "max": false,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": false,
         "show": true,
+        "sideWidth": 480,
+        "sort": "max",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
       "options": {
@@ -77,27 +75,22 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "main-prometheus"
+            "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "rate(process_cpu_seconds_total{job=\"$job\"}[1m])",
-          "intervalFactor": 2,
-          "legendFormat": "{{instance}}",
-          "metric": "process_cpu_seconds_total",
-          "range": true,
-          "refId": "A",
-          "step": 4
+          "expr": "sum(rate(kafka_topic_partition_current_offset{instance=\"$instance\", topic=~\"$topic\"}[1m])) by (topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{topic}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "CPU Usage",
+      "title": "Message in per second",
       "tooltip": {
-        "msResolution": false,
         "shared": true,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
@@ -108,203 +101,8 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "Cores",
           "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {
-        "localhost:7071": "#BA43A9"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
-      },
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "fillGradient": 0,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 2,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "main-prometheus"
-          },
-          "editorMode": "code",
-          "expr": "sum without(area)(jvm_memory_bytes_used{job=\"$job\"})",
-          "intervalFactor": 2,
-          "legendFormat": "{{instance}}",
-          "metric": "jvm_memory_bytes_used",
-          "range": true,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "JVM Memory Used",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "label": "Memory",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {
-        "localhost:7071": "#890F02"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
-      },
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "fillGradient": 0,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 3,
-      "isNew": true,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.5.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "uid": "${DS_MARI}"
-          },
-          "editorMode": "code",
-          "expr": "sum without(gc)(rate(jvm_gc_collection_seconds_sum{job=\"$job\"}[5m]))",
-          "intervalFactor": 2,
-          "legendFormat": "{{instance}}",
-          "metric": "jvm_gc_collection_seconds_sum",
-          "range": true,
-          "refId": "A",
-          "step": 4
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Time spent in GC",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percentunit",
-          "label": "% time in GC",
-          "logBase": 1,
+          "min": "0",
           "show": true
         },
         {
@@ -323,34 +121,125 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
+        "uid": "${DS_PROMETHEUS}"
       },
-      "editable": true,
-      "error": false,
-      "fill": 1,
+      "fill": 0,
       "fillGradient": 0,
-      "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 8,
+        "h": 10,
+        "w": 10,
+        "x": 10,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 480,
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "9.5.2",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "expr": "sum(kafka_consumergroup_lag{instance=\"$instance\",topic=~\"$topic\"}) by (consumergroup, topic) ",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{consumergroup}} (topic: {{topic}})",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Lag by  Consumer Group",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 10,
         "x": 0,
-        "y": 7
+        "y": 10
       },
       "hiddenSeries": false,
-      "id": 4,
-      "isNew": true,
+      "id": 16,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
-        "max": false,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": false,
         "show": true,
+        "sideWidth": 480,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
       "options": {
@@ -368,26 +257,22 @@
       "targets": [
         {
           "datasource": {
-            "uid": "${DS_MARI}"
+            "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_messagesin_total{job=\"$job\",topic!=\"\"}[5m]))",
-          "intervalFactor": 2,
+          "expr": "sum(delta(kafka_topic_partition_current_offset{instance=~'$instance', topic=~\"$topic\"}[5m])/5) by (topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
           "legendFormat": "{{topic}}",
-          "metric": "kafka_server_brokertopicmetrics_messagesin_total",
-          "range": true,
-          "refId": "A",
-          "step": 4
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Messages In Per Topic",
+      "title": "Message in per minute",
       "tooltip": {
-        "msResolution": false,
         "shared": true,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
@@ -398,7 +283,6 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "Messages/s",
           "logBase": 1,
           "show": true
         },
@@ -418,34 +302,34 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
+        "uid": "${DS_PROMETHEUS}"
       },
-      "editable": true,
-      "error": false,
-      "fill": 1,
+      "fill": 0,
       "fillGradient": 0,
-      "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 7
+        "h": 10,
+        "w": 10,
+        "x": 10,
+        "y": 10
       },
       "hiddenSeries": false,
-      "id": 5,
-      "isNew": true,
+      "id": 18,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
-        "max": false,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": false,
         "show": true,
+        "sideWidth": 480,
+        "sort": "current",
+        "sortDesc": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
       "options": {
@@ -463,26 +347,22 @@
       "targets": [
         {
           "datasource": {
-            "uid": "${DS_MARI}"
+            "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesin_total{job=\"$job\",topic!=\"\"}[5m]))",
-          "intervalFactor": 2,
-          "legendFormat": "{{topic}}",
-          "metric": "kafka_server_brokertopicmetrics_bytesin_total",
-          "range": true,
-          "refId": "A",
-          "step": 4
+          "expr": "sum(delta(kafka_consumergroup_current_offset{instance=~'$instance',topic=~\"$topic\"}[5m])/5) by (consumergroup, topic)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{consumergroup}} (topic: {{topic}})",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Bytes In Per Topic",
+      "title": "Message consume per minute",
       "tooltip": {
-        "msResolution": false,
         "shared": true,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
@@ -492,8 +372,7 @@
       },
       "yaxes": [
         {
-          "format": "Bps",
-          "label": "Bytes/s",
+          "format": "short",
           "logBase": 1,
           "show": true
         },
@@ -509,40 +388,38 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "prometheus",
-        "uid": "main-prometheus"
+        "uid": "${DS_PROMETHEUS}"
       },
-      "editable": true,
-      "error": false,
       "fill": 1,
       "fillGradient": 0,
-      "grid": {},
       "gridPos": {
         "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 7
+        "w": 20,
+        "x": 0,
+        "y": 20
       },
       "hiddenSeries": false,
-      "id": 6,
-      "isNew": true,
+      "id": 8,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
+        "rightSide": true,
         "show": true,
+        "sideWidth": 420,
         "total": false,
-        "values": false
+        "values": true
       },
-      "lines": true,
-      "linewidth": 2,
+      "lines": false,
+      "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -558,37 +435,34 @@
       "targets": [
         {
           "datasource": {
-            "uid": "${DS_MARI}"
+            "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "expr": "sum without(instance)(rate(kafka_server_brokertopicmetrics_bytesout_total{job=\"$job\",topic!=\"\"}[5m]))",
-          "intervalFactor": 2,
+          "expr": "sum by(topic) (kafka_topic_partitions{instance=\"$instance\",topic=~\"$topic\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
           "legendFormat": "{{topic}}",
-          "metric": "kafka_server_brokertopicmetrics_bytesin_total",
-          "range": true,
-          "refId": "A",
-          "step": 4
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Bytes Out Per Topic",
+      "title": "Partitions per Topic",
       "tooltip": {
-        "msResolution": false,
-        "shared": true,
+        "shared": false,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
+        "mode": "series",
+        "show": false,
+        "values": [
+          "current"
+        ]
       },
       "yaxes": [
         {
-          "format": "Bps",
-          "label": "Bytes/s",
+          "format": "short",
           "logBase": 1,
           "show": true
         },
@@ -603,10 +477,12 @@
       }
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "Kafka"
+  ],
   "templating": {
     "list": [
       {
@@ -615,10 +491,11 @@
           "text": "Prometheus",
           "value": "Prometheus"
         },
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
+        "label": "Datasource",
         "multi": false,
-        "name": "datasource",
+        "name": "DS_PROMETHEUS",
         "options": [],
         "query": "prometheus",
         "refresh": 1,
@@ -629,34 +506,42 @@
       {
         "current": {
           "selected": false,
-          "text": "jmx-exporter",
-          "value": "jmx-exporter"
+          "text": "kafka-exporter",
+          "value": "kafka-exporter"
         },
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(kafka_brokers,job)",
         "hide": 0,
-        "label": "job",
+        "includeAll": false,
+        "label": "Job",
+        "multi": false,
         "name": "job",
-        "options": [
-          {
-            "selected": true,
-            "text": "jmx-exporter",
-            "value": "jmx-exporter"
-          }
-        ],
-        "query": "jmx-exporter",
+        "options": [],
+        "query": {
+          "query": "label_values(kafka_brokers,job)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
-        "type": "textbox"
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       },
       {
         "current": {
           "selected": false,
-          "text": "java:9301",
-          "value": "java:9301"
+          "text": "kafka-exporter:9301",
+          "value": "kafka-exporter:9301"
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "main-prometheus"
+          "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(jvm_info{job=\"$job\"},instance)",
+        "definition": "label_values(kafka_brokers{job=~\"$job\"},instance)",
         "hide": 0,
         "includeAll": false,
         "label": "Instance",
@@ -664,14 +549,46 @@
         "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(jvm_info{job=\"$job\"},instance)",
+          "query": "label_values(kafka_brokers{job=~\"$job\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Topic",
+        "multi": true,
+        "name": "topic",
+        "options": [],
+        "query": "label_values(kafka_topic_partition_current_offset{instance='$instance',topic!='__consumer_offsets',topic!='--kafka'}, topic)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
-        "type": "query"
+        "tagValuesQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -705,8 +622,8 @@
     ]
   },
   "timezone": "browser",
-  "title": "Kafka Overview",
-  "uid": "c87825d2-3fcd-40e8-a120-3cdcee972406",
+  "title": "Kafka Metrics",
+  "uid": "jwPKIsniz",
   "version": 2,
   "weekStart": ""
 }

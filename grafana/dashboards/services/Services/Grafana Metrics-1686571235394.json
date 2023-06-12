@@ -1,35 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS@LOCALHOST",
-      "label": "prometheus@localhost",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": [],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.0.2"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph (old)",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -55,9 +24,9 @@
   "description": "Metrics for this Grafana instance for this Grafana board",
   "editable": true,
   "fiscalYearStartMonth": 0,
+  "gnetId": 17520,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1669487959182,
+  "id": 8,
   "links": [
     {
       "icon": "external link",
@@ -92,7 +61,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS@LOCALHOST}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -127,7 +96,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.5.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -139,7 +108,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS@LOCALHOST}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "increase(grafana_alerting_active_alerts{instance=~\"$instance:.*\", job=\"grafana\"}[1m])",
@@ -192,7 +161,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS@LOCALHOST}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -228,7 +197,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.5.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -240,7 +209,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS@LOCALHOST}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(process_resident_memory_bytes{instance=~\"$instance:.*\", job=\"grafana\"})",
@@ -255,7 +224,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS@LOCALHOST}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "process_virtual_memory_bytes{instance=~\"$instance:.*\", job=\"grafana\"}",
@@ -303,9 +272,9 @@
       }
     }
   ],
-  "refresh": "5m",
+  "refresh": "5s",
   "revision": "1.0",
-  "schemaVersion": 36,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "dashboard-metrics",
@@ -316,13 +285,13 @@
       {
         "current": {
           "selected": false,
-          "text": "prometheus@localhost",
-          "value": "prometheus@localhost"
+          "text": "Prometheus",
+          "value": "Prometheus"
         },
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "multi": false,
-        "name": "prometheus",
+        "name": "DS_PROMETHEUS",
         "options": [],
         "query": "prometheus",
         "queryValue": "",
@@ -332,10 +301,14 @@
         "type": "datasource"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "grafana",
+          "value": "grafana"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS@LOCALHOST}"
+          "uid": "main-prometheus"
         },
         "definition": "label_values(grafana_build_info, instance)\n",
         "hide": 0,
@@ -359,7 +332,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -390,7 +363,6 @@
   "timezone": "",
   "title": "Grafana Metrics",
   "uid": "TETqQfZnk",
-  "version": 1,
-  "weekStart": "",
-  "gnetId": 17520
+  "version": 3,
+  "weekStart": ""
 }
