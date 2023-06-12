@@ -32,6 +32,7 @@ public class Producteur implements Runnable {
         for (int i = 0; i < 10000; i++) {
             int degree = (int) (this.min + (Math.random() * (this.max - this.min)));
             producer.send(new ProducerRecord<String, String>(topic, "celsius", Integer.toString(degree)));
+            System.out.printf("key = %s, value = %s%n", "celsius", Integer.toString(degree));
 
             producer.flush();
 
