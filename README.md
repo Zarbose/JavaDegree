@@ -35,4 +35,4 @@ Kafka : `kafka-bin/bin/kafka-topics.sh --create --topic test --bootstrap-server 
 
 ## Grafana
 
-Pour les dashboards : https://grafana.com/grafana/dashboards/.
+Pour les dashboards : <https://grafana.com/grafana/dashboards/>.
