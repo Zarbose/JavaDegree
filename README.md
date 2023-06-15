@@ -1,7 +1,7 @@
 # JavaDegree
 
-Projet de Master 1 Informatique, UE Programmation événementielle.  
-Le but est de réaliser, via Docker, avec Java, Prometheus et Grafana, une application multi-theadé qui récupère (fictivement) des températures. Les températures en celsius doivent être envoyées dans Kafka dans un topic T1, esuite, l'application doit récupérer ces températures et les envoyer dans un topic T2 en fahrenheit. Les températures doivent pouvoir etre visualisées sur un graphique, et insérées dans une TSDB au préalable.
+Projet de Master 1 Informatique, UE Programmation Événementielle.  
+Le but est de réaliser, via Docker, Java, Prometheus et Grafana, une application multi-theadé qui récupère (fictivement) des températures. Ces températures, par défaut, en degré celsius doivent être envoyées dans Kafka dans un topic dénommé "Température_Celsius". Ensuite, l'application doit récupérer ces températures et les envoyer dans un autre topic "Température_Fahrenheit", comme son nom l'indique en degré fahrenheit. Les températures doivent pouvoir être visualisées sur un ou plusieurs graphiques, et insérées dans une TSDB au préalable.
 
 ## Build/Run Java image only
 
@@ -28,7 +28,7 @@ On peut rebuild les images si les fichiers on été modifiés en local avec l'op
 
 #### Install local Kafka utils
 
-Afin de tester le fonctionnement de Kafka, il est necessaire d'installer les utilitaires de Kafka :
+Afin de tester le fonctionnement de Kafka, il est nécessaire d'installer les utilitaires de Kafka :
 
 Récupérez la dernière version de [Kafka](https://dlcdn.apache.org/kafka/).
 
@@ -52,7 +52,7 @@ tar -zxf "kafka_2.13-${KAFKA_VERSION}.tgz" && mv "kafka_2.13-${KAFKA_VERSION}" "
 
 ### Grafana
 
-Variation manuelle des valeurs de temperature : 
+Variation manuelle des valeurs de température : 
 
 ```bash
 docker exec -it java bash -c 'TEMP_CELSIUS=10; TEMP_FAHR=100; for i in {0..6000}; do echo -e "temperature_celsius $TEMP_CELSIUS\ntemperature_fahrenheit $TEMP_FAHR\n" > /tmp/temperatures.prom; sleep 0.01; done'
