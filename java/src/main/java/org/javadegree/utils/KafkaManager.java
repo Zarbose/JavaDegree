@@ -20,6 +20,10 @@ public class KafkaManager {
 
     }
 
+    /**
+     *
+     * @return un objet qui permet de produire sur un canal Kafka
+     */
     public KafkaProducer<String, String> getProducer() {
         Properties props_pro = new Properties();
         // props_pro.put("bootstrap.servers", "localhost:9094");
@@ -31,6 +35,10 @@ public class KafkaManager {
         return pro;
     }
 
+    /**
+     *
+     * @return un objet qui permet de consomer un canal Kafka
+     */
     public KafkaConsumer<String, String> getConsumer() {
         Properties props_cons = new Properties();
         // props_cons.put("bootstrap.servers", "localhost:9094");
@@ -44,6 +52,10 @@ public class KafkaManager {
         return cons;
     }
 
+    /**
+     *
+     * @return un stream Kafka
+     */
     public KafkaStreams getKafkaStreams(){
         String topic_src = "Temperature-Celsius";
         String topic_dest = "Temperature-Fahrenheit";
