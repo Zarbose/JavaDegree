@@ -15,5 +15,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
           javadoc-branch: main
           java-version: 17
+          target-folder: doc
           project: maven
           custom-command: "cd java && mvn javadoc:javadoc"
