@@ -37,7 +37,10 @@ tar -zxf "kafka_2.13-${KAFKA_VERSION}.tgz" && mv "kafka_2.13-${KAFKA_VERSION}" "
 ### Grafana
 
 Variation manuelle des valeurs de temperature : 
-`docker exec -it java bash -c 'TEMP_CELSIUS=10; TEMP_FAHR=100; for i in {0..6000}; do echo -e "temperature_celsius $TEMP_CELSIUS\ntemperature_fahrenheit $TEMP_FAHR\n" > /tmp/temperatures.prom; sleep 0.01; done'`
+
+```bash
+docker exec -it java bash -c 'TEMP_CELSIUS=10; TEMP_FAHR=100; for i in {0..6000}; do echo -e "temperature_celsius $TEMP_CELSIUS\ntemperature_fahrenheit $TEMP_FAHR\n" > /tmp/temperatures.prom; sleep 0.01; done'
+```
 
 Cette commande permet d'envoyer les valeurs "TEMP_CELSIUS" et "TEMP_FARH" choisies dans le fichier "/tmp/temperatures.prom" afin de faire varier les courbes de températures sur Grafana.
 
