@@ -41,9 +41,4 @@ public class Consomeur implements Runnable {
             consumer.close();
         }
     }
-
-    public void shutdown() {
-        closed.set(true);
-        consumer.wakeup();
-    }
 }
