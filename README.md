@@ -22,7 +22,13 @@ docker compose  --file docker-compose-remote.yml  up  -d
 
 On peut rebuild les images si les fichiers on été modifiés en local avec l'option --build. Pour le remote il faudra faire un compose pull, et avoir delete les containers au préalable avec docker down.
 
-## Install local Kafka utils
+## Tests
+
+### Kafka
+
+#### Install local Kafka utils
+
+Afin de tester le fonctionnement de Kafka, il est necessaire d'installer les utilitaires de Kafka :
 
 Récupérez la dernière version de [Kafka](https://dlcdn.apache.org/kafka/).
 
@@ -32,7 +38,17 @@ wget "https://dlcdn.apache.org/kafka/${KAFKA_VERSION}/kafka_2.13-${KAFKA_VERSION
 tar -zxf "kafka_2.13-${KAFKA_VERSION}.tgz" && mv "kafka_2.13-${KAFKA_VERSION}" "kafka-bin" && rm -rf "kafka_2.13-${KAFKA_VERSION}.tgz"
 ```
 
-## Tests
+#### Creation d'un topic
+
+`kafka-bin/bin/kafka-topics.sh --create --topic test --bootstrap-server 127.0.0.1:9094`
+
+#### Produire des messages
+
+`kafka-bin/bin/kafka-console-producer.sh --bootstrap-server 127.0.0.1:9094 --topic test`
+
+#### Consommer des messages
+
+`kafka-bin/bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9094 --topic test --from-beginning`
 
 ### Grafana
 
