@@ -66,4 +66,4 @@ Pour les dashboards : <https://grafana.com/grafana/dashboards/>.
 
 ## Java
 
-Documentation : <https://zarbose.github.io/JavaDegree/>
+Documentation : <https://zarbose.github.io/JavaDegree/>.
